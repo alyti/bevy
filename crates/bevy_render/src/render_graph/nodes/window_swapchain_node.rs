@@ -51,7 +51,11 @@ impl Node for WindowSwapChainNode {
             .expect("Window swapchain node refers to a non-existent window.");
 
         let render_resource_context = render_context.resources_mut();
-
+    
+        if window.physical_height() == 0 || window.physical_width() == 0 {
+            return
+        }
+    
         // create window swapchain when window is resized or created
         if self
             .window_created_event_reader

@@ -53,6 +53,10 @@ impl Node for WindowTextureNode {
             .get(self.window_id)
             .expect("Window texture node refers to a non-existent window.");
 
+        if window.physical_height() == 0 || window.physical_width() == 0 {
+            return
+        }
+        
         if self
             .window_created_event_reader
             .iter(&window_created_events)
